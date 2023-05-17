@@ -1,4 +1,4 @@
-package com.company.page_loader;
+package com.company.page_loader.page;
 
 import com.company.page_loader.exceptions.InvalidUrlException;
 import com.company.page_loader.exceptions.PageNotFoundException;

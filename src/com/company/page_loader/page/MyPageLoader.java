@@ -1,24 +1,21 @@
-package com.company.page_loader;
+package com.company.page_loader.page;
 
 import com.company.page_loader.exceptions.InvalidUrlException;
 import com.company.page_loader.exceptions.PageNotFoundException;
 
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 public class MyPageLoader implements PageLoader {
-    private final List<Page> pages;
-
-    {
-        pages = new LinkedList<>();
-        pages.add(new Page("http://main", "This is main content"));
-        pages.add(new Page("http://login", "This is login content"));
-        pages.add(new Page("http://logut", "This is logout content"));
-        pages.add(new Page("http://profile", "This is profile content"));
-        pages.add(new Page("http://media", "This is media content"));
-        pages.add(new Page("http://data", "This is data content"));
-    }
+    private final List<Page> pages = Arrays.asList(
+            new Page("http://main", "This is main content"),
+            new Page("http://login", "This is login content"),
+            new Page("http://logut", "This is logout content"),
+            new Page("http://profile", "This is profile content"),
+            new Page("http://media", "This is media content"),
+            new Page("http://data", "This is data content")
+    );
 
     private static boolean isInvalidUrl(String url) {
         return url == null || !url.startsWith("http://");
@@ -33,12 +30,13 @@ public class MyPageLoader implements PageLoader {
         if (page.isEmpty()) {
             throw new PageNotFoundException("Page with provided URL:" + url + " not found!  HTTP_ERROR_404.");
         }
-        return page.get().getContent();
 
+        return page.get().getContent();
     }
 
     private static class Page {
         private final String url;
+
         private final String content;
 
         public Page(String url, String content) {
@@ -49,7 +47,6 @@ public class MyPageLoader implements PageLoader {
         public String getUrl() {
             return url;
         }
-
 
         public String getContent() {
             return content;

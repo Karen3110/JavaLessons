@@ -1,0 +1,36 @@
+Step 1
+- You have PageLoader interface which has a method String loadPage (String url)
+- MyPageLoader class implements PageLoader 
+    Has static inner class Page which has String url and String content
+    Has list of Pages which is populated manually at the beginning.
+    loadPage method iterates over the list and returns the right page content.
+    loadPage method can throw 2 exceptions
+    InvalidUrlException - when url didn’t start with “http”;
+    PageNotFoundException - when the page is not in the list.
+- Main class 
+    Creates MyPageLoader
+    Calls loadPage for several pages ( valid or invalid )
+
+
+Step 2
+- Create CachedPageLoader which implements PageLoader and uses Proxy design pattern to cache data for MyPageLoader
+- CachedPageLoader has MyPageLoader instance inside
+    loadPage method of CachedPageLoader, checks if the page is on it’s cache, returns it, if not uses MyPageLoader’s loadPage method
+    Use Map for caching.
+- Change main() method in Main class to Create instance of CachedPageLoader instead of MyPageLoader
+
+
+
+Step 3
+- Add PageLoadedObserver MyPageLoader class to notify when page is loaded
+- Add PageNavigator class to observe when page is loaded and keep data.
+    PageNavigator is implementing PageLoadedObserver
+    back() method to return the last pages url.
+      Use stack for keeping back urls.
+    forward() method to return next page url ( we cannot go forward after new page is loaded ).
+      Keep separate stack for forward
+      When we use back, we pop it from back’s stack and push to forward’s stack
+      When we use forward we pop from forward’s stack and push to back’s stack
+      WHen new page is loaded forward stack should be cleared.
+    PageNavigator keeps only url’s not contents
+
