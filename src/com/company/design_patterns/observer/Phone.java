@@ -9,7 +9,7 @@ public class Phone {
     private int screenHeight;
     private int memory;
 
-    private List<PCElectronics> observers = new LinkedList<>();
+    private final List<PCElectronics> observers = new LinkedList<>();
 
 
     public Phone() {

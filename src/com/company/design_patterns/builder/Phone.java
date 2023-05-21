@@ -1,12 +1,11 @@
 package com.company.design_patterns.builder;
 
 public class Phone {
+    public static final PhoneBuilder BUILDER = new PhoneBuilder();
     private String model;
     private int screenWidth;
     private int screenHeight;
     private int memory;
-
-    public static final PhoneBuilder BUILDER = new PhoneBuilder();
 
     public Phone() {
     }
@@ -18,7 +17,7 @@ public class Phone {
         this.memory = memory;
     }
 
-    public void enableWifiHotSpot () {
+    public void enableWifiHotSpot() {
         System.out.println("Enabling Wifi hot spot");
     }
 

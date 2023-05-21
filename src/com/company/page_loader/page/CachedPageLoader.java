@@ -10,10 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 public class CachedPageLoader implements PageLoader {
+    private final List<PageLoadedObserver> observers = new ArrayList<>();
     PageLoader pageLoader = new MyPageLoader();
     Map<String, String> cache = new HashMap<>();
-
-    private final List<PageLoadedObserver> observers = new ArrayList<>();
 
     @Override
     public String loadPage(String url) throws InvalidUrlException, PageNotFoundException {
