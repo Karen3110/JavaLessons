@@ -4,5 +4,7 @@ import com.company.page_loader.exceptions.PageNotFoundException;
 
 public interface PageLoader {
 
-    String loadPage(String url) throws PageNotFoundException;
+    String loadPage(String url);
+
+    boolean store(String url, String httpContent);
 }
